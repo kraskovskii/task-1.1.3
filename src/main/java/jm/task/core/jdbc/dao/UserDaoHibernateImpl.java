@@ -6,6 +6,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import javax.persistence.Query;
+import javax.persistence.QueryHint;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -76,7 +77,6 @@ public class UserDaoHibernateImpl implements UserDao {
     public void removeUserById(long id) {
         try (Session session = Util.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
-
             Query query = session.createQuery("DELETE FROM User WHERE id = :userId");
             query.setParameter("userId", id);
             query.executeUpdate();
@@ -116,5 +116,6 @@ public class UserDaoHibernateImpl implements UserDao {
             if (transaction != null) transaction.rollback();
             e.printStackTrace();
         }
+        Util.getSessionFactory().close();
     }
 }

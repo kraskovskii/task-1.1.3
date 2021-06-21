@@ -6,6 +6,7 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Environment;
+import org.hibernate.tool.schema.Action;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -55,12 +56,11 @@ public class Util {
         if (sessionFactory == null) {
             try {
                 StandardServiceRegistryBuilder registryBuilder = new StandardServiceRegistryBuilder();
-
                 Properties settings = new Properties();
                 settings.put(Environment.URL, URL);
                 settings.put(Environment.USER, USER);
                 settings.put(Environment.PASS, PASS);
-
+                settings.put(Environment.HBM2DDL_AUTO, Action.CREATE_DROP);
                 registryBuilder.applySettings(settings);
                 registry = registryBuilder.build();
 

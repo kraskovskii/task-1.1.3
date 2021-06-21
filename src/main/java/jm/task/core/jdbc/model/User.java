@@ -1,8 +1,11 @@
 package jm.task.core.jdbc.model;
 
+import org.hibernate.annotations.Proxy;
+
 import javax.persistence.*;
 
 @Entity
+
 @Table(name = "users")
 public class User {
     @Id
