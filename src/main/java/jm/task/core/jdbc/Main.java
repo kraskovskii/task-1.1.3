@@ -22,9 +22,9 @@ public class Main {
        for(User user : userService.getAllUsers()){
             System.out.println(user);
         }
-//        userService.cleanUsersTable();
-//        userService.dropUsersTable();
-        Util.getSessionFactory().close();
+        userService.cleanUsersTable();
+        userService.dropUsersTable();
+
 
     }
 }

@@ -42,7 +42,7 @@ public class UserDaoHibernateImpl implements UserDao {
 
     @Override
     public void dropUsersTable() {
-        try (Session session = Util.getSessionFactory().openSession()) {
+/*        try (Session session = Util.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
 
             Query query = session.createSQLQuery("DROP TABLE IF EXISTS users");
@@ -52,10 +52,11 @@ public class UserDaoHibernateImpl implements UserDao {
             System.err.println("Ошибка удаления таблицы");
             if (transaction != null) transaction.rollback();
             e.printStackTrace();
-        }
+        }*/
 
+//      if settings.put(Environment.HBM2DDL_AUTO, Action.CREATE_DROP);
+        Util.getSessionFactory().close();
     }
-
 
     @Override
     public void saveUser(String name, String lastName, byte age) {
